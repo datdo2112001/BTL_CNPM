@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Questions</h1>
+<br><br/>
+<ul>
+{% for question in object_list %}
+    <li><a href="{%url 'question-detail' question.pk %}">{{ question.question }}</a> - <a href="{%url 'category' question.category %}"> {{question.category}}</a> - {{ question.user }} - {{ question.date }}
+        {% if user.is_authenticated %}
+            {% if user.id == question.user.id%}
+            <small>-<a href="{%url 'question-edit' question.pk%}">(Edit)</a>
+            <a href="{%url 'question-delete' question.pk%}">(Delete)</a></small></li>
+            {%endif%}
+        {%endif%}
+{% endfor %}
+</ul>
+{% endblock %}
+

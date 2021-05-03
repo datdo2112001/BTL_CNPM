@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Hi
+{% endblock %}
+{% block content %}
+{%block head%}
+<head>
+	<title>test quiz</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'CSS_question.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+</head>
+{%endblock%}
+<body>
+ <div class="container mt-sm-5 my-1">
+    <div class="question ml-sm-5 pl-sm-5 pt-2">
+        <div class="py-2 h5">
+            {% for question in data %}
+                Question : <font size="5" color="green"><b>{{question.question}}</b></font> <br><br>
+                <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+          	        <form name="myform">
+
+                        <input type="radio" class="ans" id="a1" name="choice" value="{{ question.a1 }}">
+                        <label for="a1">{{ question.a1 }}</label>
+                        <br>
+
+                        <input type="radio" class="ans" id="a2" name="choice" value="{{ question.a2 }}">
+                        <label for="a1">{{ question.a2 }}</label>
+                        <br>
+
+                        <input type="radio" class="ans" id="a3" name="choice" value="{{ question.a3 }}">
+                        <label for="a1">{{ question.a3 }}</label>
+                        <br>
+
+                        <input type="radio" class="ans" id="rightAnswer" name="choice" value="{{ question.rightAnswer }}">
+                        <label for="a1">{{ question.rightAnswer }}</label>
+
+        	        </form>
+                </div>
+                <hr>
+                <hr>
+
+            {% endfor %}
+        </div>
+    </div>
+        <div class="d-flex align-items-center pt-3">
+        <div class="ml-auto mr-sm-5"> <button type="submit" class="btn btn-primary mt-3" id="savebtn"  onclick="check()">Save</button> </div>
+    </div>
+     <script>
+
+        const btn = document.querySelector('#savebtn');
+        // handle click button
+
+        btn.onclick = function () {
+            const rbs = document.querySelectorAll('input[name="choice"]');
+            score = 0
+            for (const rb of rbs) {
+                if (rb.checked && rb.id == "rightAnswer") {
+                    score += 10;
+                }
+            }
+
+            alert("Your score is : " + score)
+        };
+    </script>
+</div>
+
+</body>
+{% endblock %}

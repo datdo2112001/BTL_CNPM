@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+EL
+{% endblock %}
+
+{%block content%}
+
+
+<div class="h1">Exam List</div>
+<hr>
+{% for obj in object_list %}
+
+  <a href='{{obj.pk}}'>{{obj.name}} - {{obj.number_of_questions}} questions</a>
+    <hr>
+
+{% endfor %}
+{% endblock %}
