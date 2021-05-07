@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h3>Your Question </h3>
+<br><br/>
+<ul>
+{% for question in myques %}
+        {% if user.is_authenticated %}
+            {% if user.id == question.user.id%}
+            <li><a href="{%url 'question-detail' question.pk %}">{{ question.question }}</a> - {{ question.user }} - {{ question.date }}
+            <small>-<a href="{%url 'question-edit' question.pk%}">(Edit)</a>
+            <a href="{%url 'question-delete' question.pk%}">(Delete)</a></small></li>
+            {%endif%}
+        {%endif%}
+{% endfor %}
+</ul>
+{% endblock %}

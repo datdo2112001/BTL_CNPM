@@ -30,27 +30,21 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categories
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {%for item in all_cats%}
-              <li><a class="dropdown-item" href="{%url 'category' item%}">{{item.name}}</a></li>
-              {%endfor%}
-          </ul>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'question-list'%}">Question List</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{%url 'question-list'%}">Quiz List</a>
+          <a class="nav-link" href="{%url 'question-create'%}">Add Question</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{%url 'question-create'%}">Add Quiz</a>
+          <a class="nav-link" href="{%url 'category-create'%}">Add Test</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{%url 'category-create'%}">Add Category</a>
+          <a class="nav-link" href="{%url 'question-test'%}">Test</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'exam'%}">Test</a>
+          <li class="nav-item">
+          <a class="nav-link" href="{%url 'profile'%}">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{%url 'logout'%}">Logout</a>
@@ -76,28 +70,25 @@
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
           <div>
             <div class="card-block block-1">
-              <h3 class="card-title">CREAT YOUR QUIZ</h3>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+              <h3 class="card-title">Register/Sign in</h3>
+              <p class="card-text">Cho phép người dùng tạo tài khoản cá nhân.</p>
             </div>
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
           <div>
             <div class="card-block block-2">
-              <h3 class="card-title">ONLINE QUIZ</h3>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+              <h3 class="card-title">Question List</h3>
+              <p class="card-text">Cho phép người dùng tìm kiếm và ôn tập lại những câu hỏi từ nhiều đề trong kho đề chung.</p>
             </div>
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
           <div>
             <div class="card-block block-3">
-              <h3 class="card-title">YOUR PROFILE
+              <h3 class="card-title">Add Question
               </h3>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+              <p class="card-text">Tạo câu hỏi cho bộ đề bạn muốn(lưu ý chọn đúng user và điền đầy đủ form).</p>
             </div>
           </div>
         </div>
@@ -107,27 +98,24 @@
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
           <div>
             <div class="card-block block-4">
-              <h3 class="card-title">Special title</h3>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+              <h3 class="card-title">Add Test</h3>
+              <p class="card-text">Tạo ra một bộ đề của bạn, sau khi tạo xong dùng add question để thêm câu hỏi cho đề.</p>
             </div>
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
           <div>
             <div class="card-block block-5">
-              <h3 class="card-title">Special title</h3>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+              <h3 class="card-title">Test</h3>
+              <p class="card-text">Chọn bài test bạn muốn làm, làm xong sẽ được trả về kết quả.</p>
             </div>
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
           <div>
             <div class="card-block block-6">
-              <h3 class="card-title">Special title</h3>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+              <h3 class="card-title">Profile</h3>
+              <p class="card-text">Bao gồm các câu hỏi mà bạn đã tạo, bạn có thể edit hoặc delete chúng tại đây.</p>
             </div>
           </div>
         </div>

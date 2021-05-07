@@ -4,14 +4,14 @@ Create question
 {% endblock %}
 {%block content%}
 {% if user.is_authenticated %}
-<h1>Add Quiz</h1>
+<h3>Add Question</h3>
 <br><br/>
 <div class="form-group">
     <form method='POST' action="." enctype="multipart/form-data">{% csrf_token %}
 
         {{ form.as_p }}
 
-        <button class = "btn-btn-secondary">Post</button>
+        <button class="btn btn-info btn-md">Post</button>
     </form>
 </div>
 {% else %}

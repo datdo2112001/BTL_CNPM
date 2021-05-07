@@ -21,6 +21,7 @@ import questions.views
 import exams.views
 
 urlpatterns = [
+    path("question/test", questions.views.Question_test.as_view(),name='question-test'),
     path("", questions.views.Home_view.as_view(), name='home'),
     path("question/list", questions.views.All_question_view.as_view(), name='question-list'),
     path("question/<int:pk>/", questions.views.Question_detail_view.as_view(), name='question-detail'),
@@ -29,6 +30,7 @@ urlpatterns = [
     path("question/delete/<int:pk>/", questions.views.Delete_question_view.as_view(), name='question-delete'),
     path("category/create/", questions.views.Category_create_view.as_view(), name='category-create'),
     path("category/<str:cats>/", questions.views.Category_view, name='category'),
+    path("question/test/<str:cats>/",questions.views.Test_view, name="test"),
     path("exam/<int:pk>/", exams.views.Exam_detail_view.as_view(), name='exam-detail'),
     path("exam/", exams.views.ExamListView.as_view(),name = 'exam'),
     path("exam/<int:pk>/edit", exams.views.exam_edit_view, name='exam-edit'),
@@ -36,6 +38,7 @@ urlpatterns = [
     path("accounts/", include('django.contrib.auth.urls')),
     path("accounts/", include('accounts.urls')),
     path('admin/', admin.site.urls),
+    path("question/profile",questions.views.Profile_view, name='profile'),
 ]
 
 if settings.DEBUG:

@@ -5,6 +5,7 @@ from .models import Question, Category
 from .forms import QuestionModelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.urls import reverse_lazy
+import random
 
 
 # Create your views here.
@@ -28,9 +29,19 @@ class All_question_view(ListView):
         context["cat_menu"] = cat_menu
         return context
 
+class Question_test(ListView):
+    model = Question
+    template_name = 'questions/question_test.html'
+
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super(Question_test, self).get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
 
 class Question_detail_view(DetailView):
     model = Question
+    templist = []
     template_name = 'questions/question.html'
 
 
@@ -53,10 +64,27 @@ def Category_view(request, cats):
     category_questions = Question.objects.filter(category = cats)
     return render(request, 'category.html', {'cats':cats.title(), 'category_questions': category_questions})
 
+def Test_view(request, cats):
+    category_questions = Question.objects.filter(category = cats)
+    suffleList = []
+    stack = []
+    length = len(category_questions)
+    for question in category_questions:
+        templist = [question.a1,question.a2,question.a3,question.rightAnswer]
+        random.shuffle(templist)
+        suffleList.append(templist)
+    return render(request, 'questions/test.html', {'cats':cats.title(), 'test_list': category_questions, 'list':suffleList,'length':length, 'stack':stack})
+
+
 class Category_create_view(CreateView):
     model = Category
     template_name = "questions/addCategory.html"
     fields = '__all__'
+
+def Profile_view(request):
+    myques = Question.objects.all()
+    context = {'myques':myques}
+    return render(request,"questions/profile.html",context)
 
 
 @login_required()
@@ -68,3 +96,4 @@ def question_create_view(request, *args, **kwargs):
         obj.save()
         form = QuestionModelForm()
     return render(request, "forms.html", {"form": form})
+
